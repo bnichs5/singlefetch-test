@@ -11,6 +11,8 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"encoding/base64"
+        
 )
 
 const (
@@ -30,12 +32,12 @@ func main() {
 
 		query := request.URL.Query()
 
-		if query.Get("url") == "" {
+		if  base64.StdEncoding.DecodeString(query.Get("url")) == "" {
 			displayError(rw, "Nothing requested.")
 			return
 		}
 
-		target, err := url.Parse(query.Get("url"))
+		target, err :=  base64.StdEncoding.DecodeString(url.Parse(query.Get("url")))
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return

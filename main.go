@@ -23,8 +23,8 @@ const (
 
 func main() {
 	proxyUrl := host() + ":" + port()
-	AddressBarURL = query.Get("url")
-	AddressBarURL2 = url.Parse(AddressBarURL)
+	AddressBarURL := query.Get("url")
+	AddressBarURL2 := url.Parse(AddressBarURL)
 	
 	http.HandleFunc("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
 		favicon(rw)
@@ -35,12 +35,12 @@ func main() {
 
 		query := request.URL.Query()
 
-		if  base64.StdEncoding.DecodeString(AddressBarURL) == "" {
+		if  query.Get("url") == "" {
 			displayError(rw, "Nothing requested.")
 			return
 		}
 
-		target, err :=  base64.StdEncoding.DecodeString(AddressBarURL2)
+		target, err :=  url.Parse(query.Get("url"))
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return

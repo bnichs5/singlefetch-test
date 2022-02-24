@@ -23,8 +23,7 @@ const (
 
 func main() {
 	proxyUrl := host() + ":" + port()
-	AddressBarURL := query.Get("url")
-	AddressBarURL2 := url.Parse(AddressBarURL)
+	
 	
 	http.HandleFunc("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
 		favicon(rw)

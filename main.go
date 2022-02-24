@@ -18,11 +18,14 @@ import (
 const (
 	DefaultHost = "http://localhost"
 	DefaultPort = "8080"
+	
 )
 
 func main() {
 	proxyUrl := host() + ":" + port()
-
+	AddressBarURL = query.Get("url")
+	AddressBarURL2 = url.Parse(AddressBarURL)
+	
 	http.HandleFunc("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
 		favicon(rw)
 	})
@@ -32,12 +35,12 @@ func main() {
 
 		query := request.URL.Query()
 
-		if  base64.StdEncoding.DecodeString(query.Get("url")) == "" {
+		if  base64.StdEncoding.DecodeString(AddressBarURL) == "" {
 			displayError(rw, "Nothing requested.")
 			return
 		}
 
-		target, err :=  base64.StdEncoding.DecodeString(url.Parse(query.Get("url")))
+		target, err :=  base64.StdEncoding.DecodeString(AddressBarURL2)
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return

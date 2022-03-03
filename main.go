@@ -40,7 +40,7 @@ func main() {
 		}
 
 		//target, err :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
-		/target, err :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
+		target, err :=  url.Parse(query.Get("curl"))
 		if err != nil || string(target.IsAbs()) == false {
 			displayError(rw, "URL is invalid.")
 			return
@@ -59,8 +59,8 @@ func main() {
 					}
 				}
 
-				r.Host = target.Host
-				r.URL = target
+				r.Host = string(base64.StdEncoding.DecodeString(target.Host))
+				r.URL = string(base64.StdEncoding.DecodeString(target))
 
 				log.Println(r)
 			},

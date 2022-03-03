@@ -34,12 +34,12 @@ func main() {
 
 		query := request.URL.Query()
 
-		if  base64.StdEncoding.DecodeString(query.Get("url")) == "" {
+		if  base64.StdEncoding.DecodeString(query.Get("curl")) == "" {
 			displayError(rw, "Nothing requested.")
 			return
 		}
 
-		target, err :=  url.Parse(query.Get("url"))
+		target, err :=  url.Parse(query.Get("curl"))
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return

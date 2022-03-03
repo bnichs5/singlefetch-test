@@ -39,7 +39,7 @@ func main() {
 			return
 		}
 
-		target, err :=  base64.StdEncoding.DecodeString(url.Parse(query.Get("curl")))
+		target, err :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
 		if err != nil || string(target.IsAbs()) == false {
 			displayError(rw, "URL is invalid.")
 			return

@@ -39,11 +39,9 @@ func main() {
 			return
 		}
 
-		target, err :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
-		if err != nil || string(target.IsAbs()) == false {
-			displayError(rw, "URL is invalid.")
-			return
-		}
+		//target, err :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
+		target :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
+		
 
 		// Make reverse proxy
 		proxy := &httputil.ReverseProxy{

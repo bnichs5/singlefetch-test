@@ -40,7 +40,7 @@ func main() {
 		}
 
 		//target, err :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
-		target :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
+		target :=  string(base64.StdEncoding.DecodeString(query.Get("curl")))
 		
 
 		// Make reverse proxy

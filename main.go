@@ -34,7 +34,7 @@ func main() {
 
 		query := request.URL.Query()
 
-		if  base64.StdEncoding.DecodeString(query.Get("curl")) == "" {
+		if  query.Get("curl") == "" {
 			displayError(rw, "Nothing requested.")
 			return
 		}

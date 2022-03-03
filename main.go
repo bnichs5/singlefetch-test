@@ -59,9 +59,12 @@ func main() {
 					}
 				}
 
-				r.Host = string(base64.StdEncoding.DecodeString(target.Host))
-				r.URL = string(base64.StdEncoding.DecodeString(target))
-
+				//r.Host = string(base64.StdEncoding.DecodeString(target.Host))
+				//r.URL = string(base64.StdEncoding.DecodeString(target))
+				r.Host = target.Host
+				r.URL = target
+				
+				
 				log.Println(r)
 			},
 

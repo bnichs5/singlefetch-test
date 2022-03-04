@@ -65,10 +65,10 @@ func main() {
 					}
 				}
 
-				r.Host = base64.StdEncoding.DecodeString(string(target.Host))
-				r.URL = base64.StdEncoding.DecodeString(string(target))
-				//r.Host = target.Host
-				//r.URL = target
+				//r.Host = base64.StdEncoding.DecodeString(string(target.Host))
+				//r.URL = base64.StdEncoding.DecodeString(string(target))
+				r.Host = string(target.Host)
+				r.URL = string(target)
 				
 				
 				log.Println(r)

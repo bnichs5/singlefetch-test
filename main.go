@@ -48,7 +48,8 @@ func main() {
 		
 		target2, err := base64.StdEncoding.DecodeString(query.Get("curl"))
 		if err != nil {
-		log.Fatalf("Some error occured during base64 decode. Error %s", err.Error())
+			log.Fatalf("Some error occured during base64 decode. Error %s", err.Error())
+			return
 		}
 		
 		target, err := url.Parse(string(target2))

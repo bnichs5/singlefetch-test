@@ -48,9 +48,16 @@ func main() {
 		
 		target2, err := base64.StdEncoding.DecodeString(query.Get("curl"))
 		if err != nil {
-			log.Fatalf("Some error occured during base64 decode. Error %s", err.Error())
-			return
-		}
+			if _, ok := err.(base64.CorruptInputError); ok {
+		    		panic("\nbase64 input is corrupt, check service Key")
+			}
+			panic(err)
+	    	}
+		
+		//if err != nil {
+		//	log.Fatalf("Some error occured during base64 decode. Error %s", err.Error())
+		//	return
+		//}
 		
 		target, err := url.Parse(string(target2))
 		if err != nil || target.IsAbs() == false {

@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"os"
 	"strconv"
-	//"encoding/base64"
+	"encoding/base64"
         
 )
 
@@ -46,7 +46,7 @@ func main() {
 			//return
 		//}
 		
-		target, err := url.Parse(query.Get("curl"))
+		target, err := url.Parse(base64.StdEncoding.DecodeString(query.Get("curl")))
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return
@@ -67,8 +67,8 @@ func main() {
 
 				//r.Host = base64.StdEncoding.DecodeString(string(target.Host))
 				//r.URL = base64.StdEncoding.DecodeString(string(target))
-				r.Host = string(target.Host)
-				r.URL = string(target)
+				r.Host = target.Host
+				r.URL = target
 				
 				
 				log.Println(r)

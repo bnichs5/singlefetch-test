@@ -13,7 +13,9 @@ import (
 	"strconv"
 	"encoding/base64"
         "time"
+	"strconv"
 )
+
 
 const (
 	DefaultHost = "http://localhost"
@@ -52,9 +54,13 @@ func main() {
 	    	}
 		
 		
-		epochFromUrl := string(target2[len(target2)-10:])
+		
+		epochFromUrl, err := strconv.Atoi(string(target2[len(target2)-10:]))
+		if err != nil {
+		    panic(err)
+		}
 		//target2 = (target2[:len(target2)-10])
-		curEpoch := (now.Unix() - 120)
+		curEpoch := (now.Unix())
 		if curEpoch - epochFromUrl <= 120 {
 			target2 = (target2[:len(target2)-10])
 		}

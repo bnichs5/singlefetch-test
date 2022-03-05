@@ -12,7 +12,7 @@ import (
 	"os"
 	"strconv"
 	"encoding/base64"
-        
+        "golang.org/x/exp/utf8string"
 )
 
 const (
@@ -20,6 +20,18 @@ const (
 	DefaultPort = "8080"
 	
 )
+
+func trimLeftChars(s string, n int) string {
+    m := 0
+    for i := range s {
+        if m >= n {
+            return s[i:]
+        }
+        m++
+    }
+    return s[:0]
+}
+
 
 func main() {
 	proxyUrl := host() + ":" + port()
@@ -39,12 +51,7 @@ func main() {
 			return
 		}
 
-		//target, err :=  string(base64.StdEncoding.DecodeString(url.Parse(query.Get("curl"))))
-		//target, err :=  url.Parse(query.Get("curl"))
-		//if err != nil || target.IsAbs() == false {
-			//displayError(rw, "URL is invalid.")
-			//return
-		//}
+		
 		
 		target2, err := base64.StdEncoding.DecodeString(query.Get("curl"))
 		if err != nil {
@@ -54,12 +61,10 @@ func main() {
 			panic(err)
 	    	}
 		
-		//if err != nil {
-		//	log.Fatalf("Some error occured during base64 decode. Error %s", err.Error())
-		//	return
-		//}
+		//target3 := ("%q\n", trimLeftChars(target2, 7))
+		target3 := target2.Slice(6, target2.RuneCount())
 		
-		target, err := url.Parse(string(target2))
+		target, err := url.Parse(string(target3))
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return

@@ -63,7 +63,7 @@ func main() {
 		
 		//target3 := ("%q\n", trimLeftChars(target2, 7))
 		//target3 := target2.Slice(6, target2.RuneCount())
-		target3 := target2[:6] + "" + target2[7:]
+		target3 := target2[:6] + target2[7:]
 		
 		target, err := url.Parse(string(target3))
 		if err != nil || target.IsAbs() == false {

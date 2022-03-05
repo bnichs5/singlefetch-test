@@ -21,16 +21,6 @@ const (
 	
 )
 
-func trimLeftChars(s string, n int) string {
-    m := 0
-    for i := range s {
-        if m >= n {
-            return s[i:]
-        }
-        m++
-    }
-    return s[:0]
-}
 
 
 func main() {
@@ -63,9 +53,12 @@ func main() {
 		
 		//target3 := ("%q\n", trimLeftChars(target2, 7))
 		//target3 := target2.Slice(6, target2.RuneCount())
-		target3 := target2[:6] + target2[7:]
+		//target3 := target2[:6] + target2[7:]
+		target3 := []byte(target2)
+		target3[6] = ''
+		target4 := string(target3[:])
 		
-		target, err := url.Parse(string(target3))
+		target, err := url.Parse(string(target4))
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return

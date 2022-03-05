@@ -12,7 +12,7 @@ import (
 	"os"
 	"strconv"
 	"encoding/base64"
-        "golang.org/x/exp/utf8string"
+        //"golang.org/x/exp/utf8string"
 )
 
 const (

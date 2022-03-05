@@ -60,7 +60,19 @@ func main() {
 		target4 = target4[:15] + "" + target4[16:]
 		target4 = target4[:15] + "" + target4[16:]
 		
-		target, err := url.Parse(string(target4))
+		
+		
+		target5, err := base64.StdEncoding.DecodeString(target4)
+		if err != nil {
+			if _, ok := err.(base64.CorruptInputError); ok {
+		    		panic("\nbase64 input is corrupt, check service Key")
+			}
+			panic(err)
+	    	}
+		
+		
+		
+		target, err := url.Parse(string(target5))
 		if err != nil || target.IsAbs() == false {
 			displayError(rw, "URL is invalid.")
 			return

@@ -51,12 +51,14 @@ func main() {
 			panic(err)
 	    	}
 		
-		//target3 := ("%q\n", trimLeftChars(target2, 7))
-		//target3 := target2.Slice(6, target2.RuneCount())
-		//target3 := target2[:6] + target2[7:]
 		target3 := []byte(target2)
-		target3[6] = ''
 		target4 := string(target3[:])
+		target4 = target4[:5] + "" + target4[6:]
+		target4 = target4[:9] + "" + target4[10:]
+		target4 = target4[:12] + "" + target4[13:]
+		target4 = target4[:14] + "" + target4[15:]
+		target4 = target4[:15] + "" + target4[16:]
+		target4 = target4[:15] + "" + target4[16:]
 		
 		target, err := url.Parse(string(target4))
 		if err != nil || target.IsAbs() == false {

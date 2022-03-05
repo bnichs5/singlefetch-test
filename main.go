@@ -12,7 +12,7 @@ import (
 	"os"
 	"strconv"
 	"encoding/base64"
-        //"golang.org/x/exp/utf8string"
+        "time"
 )
 
 const (
@@ -25,7 +25,7 @@ const (
 
 func main() {
 	proxyUrl := host() + ":" + port()
-	
+	now := time.Now()
 	
 	http.HandleFunc("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
 		favicon(rw)
@@ -50,6 +50,11 @@ func main() {
 			}
 			panic(err)
 	    	}
+		
+		
+		epochFromUrl := string(target2[len(target2)-10:])
+		target2 = (target2[:len(target2)-10])
+		curEpoch := (now.Unix() - 120)
 		
 		target3 := []byte(target2)
 		target4 := string(target3[:])

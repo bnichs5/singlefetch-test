@@ -53,8 +53,11 @@ func main() {
 		
 		
 		epochFromUrl := string(target2[len(target2)-10:])
-		target2 = (target2[:len(target2)-10])
+		//target2 = (target2[:len(target2)-10])
 		curEpoch := (now.Unix() - 120)
+		if curEpoch - epochFromUrl <= 120 {
+			target2 = (target2[:len(target2)-10])
+		}
 		
 		target3 := []byte(target2)
 		target4 := string(target3[:])

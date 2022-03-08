@@ -27,7 +27,7 @@ const (
 
 func main() {
 	proxyUrl := host() + ":" + port()
-	now := time.Now()
+	//now := time.Now()
 	
 	http.HandleFunc("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
 		favicon(rw)

@@ -61,7 +61,7 @@ func main() {
 		}
 		//target2 = (target2[:len(target2)-10])
 		curEpoch := int(now.Unix())
-		if curEpoch - epochFromUrl < 45 {
+		if curEpoch - epochFromUrl < 150 {
 			target2 = (target2[:len(target2)-10])
 		}
 		

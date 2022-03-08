@@ -119,8 +119,9 @@ func main() {
 
 				// Handle redirection responses
 				if r.StatusCode >= 300 && r.StatusCode < 400 && r.Header.Get("Location") != "" {
-					if query.Get("redirection") == "follow" {
-						r.Header.Set("Location", proxyUrl+"/?redirection=follow&url="+r.Header.Get("Location"))
+					if query.Get("redirection") != "" {
+						r.Header.Set("Content-Disposition", "attachment; filename=" + query.Get("redirection") + ".mkv")
+						//r.Header.Set("Location", proxyUrl+"/?redirection=follow&url="+r.Header.Get("Location"))
 					} else if query.Get("redirection") == "stop" {
 						displayLocation(r, r.Header.Get("Location"))
 					}
@@ -166,6 +167,7 @@ func favicon(rw http.ResponseWriter) {
 func displayError(rw http.ResponseWriter, error string) {
 	rw.WriteHeader(http.StatusBadRequest)
 	//rw.Header().Set("Content-type", "application/json")
+	rw.Header().Set("Content-Disposition", "attachment; filename=YOURNAME.mkv")
 	rw.Header().Set("Content-type", "video/x-matroska")
 	//rw.Header().Set("Content-Disposition: attachment; filename='filename.mkv'")
 
@@ -192,6 +194,7 @@ func displayLocation(r *http.Response, location string) {
 	r.StatusCode = http.StatusOK
 	r.Header = http.Header{}
 	r.Header.Set("Content-Type", "video/x-matroska")
+	r.Header.Set("Content-Disposition", "attachment; filename=YOURNAME.mkv")
 	//r.Header.Set("Content-Disposition: attachment; filename='filename.mkv'")
 	//r.Header.Set("Content-Type", "application/json")
 	//r.Header.Set("Content-Disposition", "inline"; "filename='myfile.mkv'")

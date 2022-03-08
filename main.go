@@ -194,5 +194,6 @@ func displayLocation(r *http.Response, location string) {
 	r.Header.Set("Content-Type", "video/x-matroska")
 	//r.Header.Set("Content-Disposition: attachment; filename='filename.mkv'")
 	//r.Header.Set("Content-Type", "application/json")
+	//r.Header.Set("Content-Disposition", "inline"; "filename='myfile.mkv'")
 	r.Header.Set("Content-Length", strconv.Itoa(len(body)))
 }

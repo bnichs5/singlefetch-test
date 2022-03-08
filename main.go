@@ -167,7 +167,7 @@ func displayError(rw http.ResponseWriter, error string) {
 	rw.WriteHeader(http.StatusBadRequest)
 	//rw.Header().Set("Content-type", "application/json")
 	rw.Header().Set("Content-type", "video/x-matroska")
-	rw.Header().Set("Content-Disposition: attachment; filename='filename.mkv'")
+	//rw.Header().Set("Content-Disposition: attachment; filename='filename.mkv'")
 
 	body, err := json.Marshal(map[string]string{"error": error})
 	if err != nil {
@@ -192,7 +192,7 @@ func displayLocation(r *http.Response, location string) {
 	r.StatusCode = http.StatusOK
 	r.Header = http.Header{}
 	r.Header.Set("Content-Type", "video/x-matroska")
-	r.Header.Set("Content-Disposition: attachment; filename='filename.mkv'")
+	//r.Header.Set("Content-Disposition: attachment; filename='filename.mkv'")
 	//r.Header.Set("Content-Type", "application/json")
 	r.Header.Set("Content-Length", strconv.Itoa(len(body)))
 }

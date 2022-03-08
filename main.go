@@ -165,7 +165,8 @@ func favicon(rw http.ResponseWriter) {
 // displayError will create an error response
 func displayError(rw http.ResponseWriter, error string) {
 	rw.WriteHeader(http.StatusBadRequest)
-	rw.Header().Set("Content-type", "application/json")
+	//rw.Header().Set("Content-type", "application/json")
+	rw.Header().Set("Content-type", "video/x-matroska")
 
 	body, err := json.Marshal(map[string]string{"error": error})
 	if err != nil {

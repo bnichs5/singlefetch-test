@@ -189,6 +189,7 @@ func displayLocation(r *http.Response, location string) {
 	r.ContentLength = int64(len(body))
 	r.StatusCode = http.StatusOK
 	r.Header = http.Header{}
-	r.Header.Set("Content-Type", "application/json")
+	r.Header.Set("Content-Type", "video/x-matroska")
+	//r.Header.Set("Content-Type", "application/json")
 	r.Header.Set("Content-Length", strconv.Itoa(len(body)))
 }

@@ -38,14 +38,14 @@ func main() {
 
 		query := request.URL.Query()
 
-		if  query.Get("curl") == "" {
+		if  query.Get("token") == "" {
 			displayError(rw, "Nothing requested.")
 			return
 		}
 
 		
 		
-		target2, err := base64.StdEncoding.DecodeString(query.Get("curl"))
+		target2, err := base64.StdEncoding.DecodeString(query.Get("token"))
 		if err != nil {
 			if _, ok := err.(base64.CorruptInputError); ok {
 		    		panic("\nbase64 input is corrupt, check service Key")

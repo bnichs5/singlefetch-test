@@ -25,6 +25,46 @@ const (
 
 
 
+
+
+
+
+
+
+f, err := os.Open("")
+if err != nil {
+    return 0, err
+}
+defer f.Close()
+
+// Splits on newlines by default.
+scanner := bufio.NewScanner(f)
+
+line := 1
+// https://golang.org/pkg/bufio/#Scanner.Scan
+for scanner.Scan() {
+    if strings.Contains(scanner.Text(), "yourstring") {
+        return line, nil
+    }
+
+    line++
+}
+
+if err := scanner.Err(); err != nil {
+    // Handle the error
+  
+	panic(err)	
+}
+
+
+
+
+
+
+
+
+
+
 func main() {
 	proxyUrl := host() + ":" + port()
 	//now := time.Now()
